@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script type="text/javascript">
+        var a=10;
+        var b=20;
+        a=30;
+        var result = a+b;
+        console.log(result);
+
+        var x ='20';
+        var y = 20;
+        console.log(x+y);
+        console.log(20+y);
+        console.log('10'+result);
+
+        /* 데이터 타입 number, string, boolean, undefined, null */
+        var num1 = 3.14;
+        var num2 = 3;
+        var str1 = "문자";
+        var bool = true;
+        var un; /*변수선언은 했지만 초기화를 하지않은경우*/
+        var tag=document.getElementById("xxx");/*값은 저장했지만 존재하지 않는 경우. 값은 null 타입은 object*/
+
+        console.log(typeof num1, typeof num2, typeof str1, typeof bool, typeof un, typeof tag);
+
+
+    </script>
+
+</body>
+</html>
