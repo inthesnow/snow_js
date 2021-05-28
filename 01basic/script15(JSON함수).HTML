@@ -24,7 +24,7 @@
         console.log(obj);
 
         //단 - 문자열을 제이슨 형식으로 변경할 떄에는 엄격한 규칙을 가지는데  key, value를 ""처리해야합니다.
-        JSON.parse('[{"키": "aaa123"}]'); //error
+        //JSON.parse('[{키: "aaa123"}]'); //error
         var result2 = JSON.parse('[{"키": "aaa123"}]');
         console.log(result2);
 

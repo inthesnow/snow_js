@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 태그에 직접 이벤트를 기입하는 형태(인라인이벤트)이벤트 속성안에는 순수한 js코드가 들어갑니다. -->
+
+    <button type="button" onclick="alert('her!')">인라인 이벤트 버튼</button>
+    <button type="button" onclick="function check() { alert('her!');} check();">인라인 이벤트 버튼</button><br><br>
+    <!-- 위에 2개도 가능하지만 재사용이 불가능하고 코드가 지저분 아래 형식 위주로 사용 -->
+    <button type="button" onclick="check();">인라인 이벤트 버튼(효율성업!)</button>
+    <script>
+        function check() {
+            alert('her!');
+        }
+    </script>
+    <hr>
+    <button type="button" onclick="check2(this);">1</button> <!--그냥 check2()만 쎃놓으면 1,2,3,4 구분할 수가 없음 > 구분을 위해 this추가-->
+    <button type="button" onclick="check2(this);">2</button>
+    <button type="button" onclick="check2(this);">3</button>
+    <button type="button" onclick="check2(this);">4</button>
+    <script>
+        function check2(a) { //this를 받을 맴버변수 a
+            console.log(a);//a를 통해 맴버변수를 각각 다르게 체크!
+            console.log(a.innerHTML); //테그안에 들어있는 문자열 형태의 값 > 실행문을 넣고안넣고 비교해서 실행하면 알 수 있음!
+            console.log(a.id); //태그안에 id속성
+
+            a.id="hello world"; //id 속성 변경
+            a.innerHTML='hello world'; //innerHTML실행이후 내용을 바꾸는 실행문
+        }
+    </script>
+
+</body>
+</html>

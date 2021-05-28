@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 1. 아래 checkbox버튼을 클릭했을 때, "동의했습니다" 경고창을 띄우고 value값을 확인 -->
+    <input type="checkbox" value="1" onclick="check('1')">조항1
+    <input type="checkbox" value="2" onclick="check('2')">조항2
+    <input type="checkbox" value="3" onclick="check('3')">조항3
+    <input type="checkbox" value="4" onclick="check('4')">조항4
+
+    <script>
+        function check(a) {
+            alert("동의했습니다."+a.value);
+        }
+    </script>
+
+    <hr>
+
+    <!-- 2. 확인을 클릭 했을때 input태그의 공백여부, 기억하기의 체크여부 확인하세요 -->
+    ID:<input type="text" id="id">
+    기억하기:<input type="checkbox" id="remember">
+    <button type="button" id="check">확인</button>
+    <script>
+        var id = document.getElementById("id");
+        var rmb = document.getElementById("remember");
+        var btn = document.getElementById("check");
+        btn.addEventListener("click", function() {
+            if(id==null) {
+                alert("id를 입력하세요");
+            } else {
+                rmb.check?alert("id를 기억합니다."):("id를 기억하지않습니다.");
+            }
+        }
+        )
+
+
+    </script>
+</body>
+</html>

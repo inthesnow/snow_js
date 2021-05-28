@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 스크립트 태그는 요기요 -->
+    <script>
+        window.onload = function() {
+            var nav = document.getElementById("ok1");
+            nav.onclick = function() {
+                if(confirm("이동하시겠습니까?") == true) {
+                    location.href="https://www.naver.com/";
+                }
+            }
+            var goo = document.getElementById("ok2");
+            goo.onclick = function() {
+                if(confirm("이동하시겠습니까?") == true) {
+                    location.href="https://www.google.co.kr";
+                }
+            }
+        }
+    </script>
+    <button id="ok1">네이버로 이동</button>
+    <button id="ok2">google로 이동</button>
+
+</body>
+</html>

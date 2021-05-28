@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 1. innerHTML속성을 이용 select에서 value를 이용해서 단어를 바꿔라. -->
+    <div id='result'></div>
+
+    (select에서 value송성은 선택된 값을 의미 합니다.)<br>
+
+    <select name="language" onchange="handleOnChange(this)">
+        <option value="단어를 선택해주세요">선택</option>
+        <option value="한국어 입니다.">안녕하세요</option>
+        <option value="영어입니다.">hello</option>
+        <option value="중국어입니다.">你好</option>
+    </select>
+    <script>
+           function handleOnChange(e) {
+              // 선택된 데이터 가져오기
+              const value = e.value;
+              
+              // 데이터 출력
+              document.getElementById('result').innerText
+              = value;
+            }
+    </script>
+</body>
+</html>
