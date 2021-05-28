@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        var date = [
+            {id: 'kkk123', title: 'java'},
+            {id: 'aaa123', title: 'jsp'},
+            {id: 'bbb123', title: 'js'}
+        ]
+
+        console.log(data);
+
+        var result = JSON.stringify(data); //제이슨을 문자열로 변경하는 방법
+        console.log(result);
+
+        var obj = JSON.parse(result); //문자열을 제이슨으로 변경하는 방법
+        console.log(obj);
+
+        //단 - 문자열을 제이슨 형식으로 변경할 떄에는 엄격한 규칙을 가지는데  key, value를 ""처리해야합니다.
+        JSON.parse('[{"키": "aaa123"}]'); //error
+        var result2 = JSON.parse('[{"키": "aaa123"}]');
+        console.log(result2);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // function func1() {
+        //     var a = 1;
+        // } //a의 범위는 여기에서 끝
+        // console.log(a); //error
+        
+        function method() {
+            var a = "hi";
+            
+            
+            // var result = function() {
+            //     console.log(a);
+            // }
+            // return result;
+            return function() { //JS함수는 실행환경의 상태를 기억한다
+                return a;
+            }
+        }
+        //클로져 - 내부 익명함수가 외부함수 method()의 값을 바꿀 수 있는(접근할 수 있는) 키를 가지고 있다
+        //외부함수 밖에서 내부함수가 호출되더라도 외부함수에 있는 지역변수 a에 접근이 가능한데, 이런 반환함수는 클로져라고 한다
+        //클로져로 private 생성 가능(setter, getter)
+        var b = method(); //method가 끝나는 시점에 a값은 지역변수이므로 제거가 됨. 그런데 내부함수 클로져 b함수(function())을 가지고 나옴
+        console.log(b); //출력결과 - 함수
+        console.log("외부함수 method에 있는 지역변수값: " + b()); //출력결과 - 기억된 a값
+
+        //이런 클로져 함수를 이용해서 getter, setter메서드로 활용할 수 있다
+        function test() {
+            var _name = "private변수"; //naming규칙으로 _는 private을 의미
+            console.log(_name);
+
+            return function(name) {
+                _name = name;
+                return _name;
+            }
+        }
+        
+        var setter = test();
+        console.log(setter("이순신")); //리턴의 결과자체는 함수이고, 외부에서 값을 전달 (결과값이 변함)
+
+
+
+    </script>
+</body>
+</html>

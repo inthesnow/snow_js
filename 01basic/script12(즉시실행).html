@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*즉시실행함수*/
+        // (function() {
+        //     alert("즉시실행");
+        // })();
+
+        /* 즉시실행함수의 매개변수  (고급JS기법)*/
+        // (function(a,b,c) {
+        //     console.log(a,b,c);
+        // })('a', 1, 2);
+        
+        function func1() {
+            console.log('1번');
+            return '1번';
+        }
+
+        function func2() {
+            console.log('2번');
+        }
+        
+        //사용이유: 페이지에서 실행되는 초기값을 지정하거나, 초기에 순서대로 진행되는 함수들을 정의하기위해
+        //즉시실행 함수가 있으면 가장 먼저 실행될거고, 여기에서 초기화가 될 것임을 알아야함.
+        (function() {
+            var result = func1();
+            func2(result);
+        })();
+
+    </script>
+</body>
+</html>
