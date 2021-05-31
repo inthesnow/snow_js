@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!-- 비밀번호or아이디가 변경될떄 마다 예시화면 처럼 구현하세요 -->
+    <section>
+        <form class="login">
+            <label>아이디</label>
+            <input type="text" name="id" id="id"><br>
+            <span class="idMsg"></span><br>
+
+            <label>비밀번호</label>
+            <input type="password" name="pw" id="pw"><br>
+            <span class="pwMsg"> </span><br>
+        </form>
+    </section>
+
+    <script>
+        var id = document.getElementById("id");
+        var idMsg = document.querySelector(".idMsg");
+    
+        id.addEventListener("input", function() {
+
+            if(id.value.length==0){
+                id.style.borderColor="black";
+                idMsg.innerHTML=null;
+            } else if (id.value.length>=4){
+                id.style.borderColor="green";
+                idMsg.innerHTML=null;
+            } else {
+                id.style.borderColor = "red";
+                idMsg.innerHTML="4글자 이상이어야합니다.";
+            }
+        });
+        var pw = document.getElementById("pw");
+        var pwMsg = document.querySelector(".pwMsg");
+    
+        pw.addEventListener("input", function() {
+
+            if(pw.value.length==0){
+                pw.style.borderColor="black";
+                pwMsg.innerHTML=null;
+            } else if (pw.value.length>=9){
+                pw.style.borderColor="green";
+                pwMsg.innerHTML=null;
+            } else {
+                pw.style.borderColor = "red";
+                pwMsg.innerHTML="9글자 이상이어야합니다.";
+            }
+        });
+
+    </script>
+
+</body>
+</html>

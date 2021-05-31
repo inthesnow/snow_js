@@ -30,19 +30,22 @@
         btn.onclick = function() {
             var seat = document.querySelectorAll("form>input");
             var count = 0;
+            var list = new Array();
             
             for(var i=0;i<seat.length;i++){
                 if(seat[i].checked) {
-                    var data = [
-                        {result:seat[i].value}
-                    ]
-                    console.log(seat[i]);
                     count++;
-                    var json = JSON.stringify(data);
-                    var obj = JSON.parse(json);        
+                    list.push(seat[i].value);
                 }
             }
-            if(count==0) alert("체크가 되지않았습니다.")
+            
+            if(count==0) {
+                alert("체크가 되지않았습니다.")
+            } else {
+                var data = JSON.stringify({data : list});
+                console.log(data);
+            }
+
         }
 
     </script>
