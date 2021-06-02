@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 클래스의 이름은 여러개를 가질수있다. -->
+    <button type="button" class="btn btn-default" id="btn">btn</button>
+
+    <script>
+        var btn = document.getElementById("btn");
+        console.log(btn.className); //class 이름을 얻는다.
+        console.log(btn.classList); //class 이름을 리스트로 얻는다.
+
+        btn.classList.add(newBtn);
+
+    </script>
+</body>
+</html>

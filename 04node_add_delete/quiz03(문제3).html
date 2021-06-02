@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>할일 삭제 기능은 아직 구현하지마세요</h2>
+
+    <p>할일 목록 만들기</p>
+
+
+    <span id="well"></span>
+    <input type="text" class="name" placeholder="이름을 입력하세요">
+    <button type="button" id="btn1">확인</button><br>
+    
+    <input type="text" class="list" placeholder="당신이 할일을 적으세요">
+    <button type="button" id="btn2">확인</button><br>
+    <!-- 할일 리스트 -->
+    <ul class="todoList">
+    </ul>
+
+    <script>
+        var btn1 = document.getElementById("btn1");
+        btn1.addEventListener("click", function() {
+            var well = document.getElementById("well");
+            var input1 = document.querySelector(".name");
+            
+            well.innerHTML=input1.value+"님 환영합니다.";
+            input1.style.display="none";
+            btn1.style.display="none";
+        });
+        btn2.addEventListener("click", function() {
+            var input2 = document.querySelector(".list");
+            
+            var li = document.createElement("li");
+            var text = document.createTextNode(input2.value);
+
+            var delBtn = document.createElement("button");
+            delBtn.innerHTML="X";
+            delBtn.addEventListener("click", delList);
+            
+            var upBtn = document.createElement("button");
+            upBtn.innerHTML="↑";
+            upBtn.addEventListener("click", up);
+
+            var downBtn = document.createElement("button");
+            downBtn.innerHTML="↓";
+            downBtn.addEventListener("click", down);
+            
+            li.appendChild(text);
+            li.appendChild(delBtn);
+            li.appendChild(upBtn);
+            li.appendChild(downBtn);
+
+            document.querySelector(".todoList").appendChild(li);
+            input2.value="";
+
+            function delList() {
+                    alert("할일이 삭제되었습니다.")
+                    li.remove();
+            }
+            
+            function up() {
+                var current = event.target.parentElement;
+                var previous = current.previousElementSibling;
+                console.log(current);
+                console.log(previous);
+
+                if (previous == null) {
+                    alert("첫번쨰 행입니다.");
+                    return;
+                }
+                if (confirm("이동하시겠습니까?")) {
+                        document.querySelector(".todoList").insertBefore(current, previous);   
+                }
+            }
+            function down() {
+                var current = event.target.parentElement;
+                var next = current.nextElementSibling;
+                console.log(current);
+                console.log(next);
+
+                if (next == null) {
+                    alert("마지막 행입니다.");
+                    return;
+                }
+                if (confirm("이동하시겠습니까?")) {
+                    document.querySelector(".todoList").insertBefore(next, current);
+                }
+            }
+        });
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        table {border-spacing: 0; border-collapse: collapse;}
+        th, td, tr{border: 1px solid #777;}
+    </style>
+
+</head>
+<body>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>이동</th>
+                <th>번호</th>
+                <th>이름</th>
+                <th>내용</th>
+            </tr>
+        </thead>
+        <tbody class="tableList">
+            <tr>
+                <td>
+                    <button onclick="up(this)" id="up">↑</button>
+                    <button onclick="down(this)">↓</button>
+                </td>
+                <td>1</td>
+                <td>hong</td>
+                <td>say hello</td>
+            </tr>
+            <tr>
+                <td>
+                    <button onclick="up(this)">↑</button>
+                    <button onclick="down(this)">↓</button>
+                </td>   
+                <td>2</td>
+                <td>park</td>
+                <td>say hello</td>
+            </tr>
+            <tr>
+                <td>
+                    <button onclick="up(this)">↑</button>
+                    <button onclick="down(this)">↓</button>
+                </td>        
+                <td>3</td>
+                <td>kang</td>
+                <td>say hello</td>
+            </tr>
+            <tr>
+                <td>
+                    <button onclick="up(this)">↑</button>
+                    <button onclick="down(this)">↓</button>
+                </td>        
+                <td>4</td>
+                <td>lee</td>
+                <td>say hello</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <script>
+            function up(node) {
+                console.dir(node);
+                /*
+                console.log(node.parElement); //순수한 element요소만
+                console.log(node.paremtNode);// text요소도 포함되어 있다면 선택
+                console.log(node.nextElementSibling); // 다음 형제노드
+                console.log(node.prevousElemntSibling); //이전형제노드
+
+                console.log(node.firstElementChild);//첫번째 자식요소
+                console.log(node.lastlementChild);//마지막 자식요소
+                */
+                var tableList = document.querySelector(".tableList");
+                var current = node.parentElement.parentElement;
+                var previous = current.previousElementSibling;
+                console.log(current);
+                console.log(previous);
+
+                if(previous==null) {
+                    alert("첫번쨰 행입니다.");
+                    return;
+                }
+
+                //부모요소.insertBefore(삽입노드, 기준노드); //기준노드앞에 삽입노드이동
+                tableList.insertBefore(current, previous);
+
+            }
+            function down(node) {
+                var tableList = document.querySelector(".tableList");
+                var current = node.parentElement.parentElement;
+                var next = current.nextElementSibling;
+                console.log(current);
+                console.log(next);
+
+                if(next==null) {
+                    alert("마지막 행입니다.");
+                    return;
+                }
+
+                tableList.insertBefore(next, current);
+            }
+            
+        </script>
+
+
+
+</body>
+</html>

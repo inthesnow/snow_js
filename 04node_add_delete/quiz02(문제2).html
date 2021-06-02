@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>할일 삭제 기능은 아직 구현하지마세요</h2>
+
+    <p>할일 목록 만들기</p>
+
+
+    <span id="well"></span>
+    <input type="text" class="name" placeholder="이름을 입력하세요">
+    <button type="button" id="btn1">확인</button><br>
+    
+    <input type="text" class="list" placeholder="당신이 할일을 적으세요">
+    <button type="button" id="btn2">확인</button><br>
+    <!-- 할일 리스트 -->
+    <ul class="ul"></ul>
+
+    <script>
+        var btn1 = document.getElementById("btn1");
+        btn1.addEventListener("click", function() {
+            var well = document.getElementById("well");
+            var input1 = document.querySelector(".name");
+            
+            well.innerHTML=input1.value+"님 환영합니다.";
+            input1.style.display="none";
+            btn1.style.display="none";
+        });
+        btn2.addEventListener("click", function() {
+            var input2 = document.querySelector(".list");
+            
+            var li = document.createElement("li");
+            var text = document.createTextNode(input2.value);
+            var button = document.createElement("button");
+            button.innerHTML="X";
+            
+            li.appendChild(text);
+            li.appendChild(button);
+            document.querySelector(".ul").appendChild(li);
+            input2.value="";
+            
+            button.addEventListener("click", delList);
+        
+            function delList() {
+                    alert("할일이 삭제되었습니다.")
+                    console.log(li);
+                    li.remove();
+            }
+        });
+
+
+    </script>
+
+</body>
+</html>
