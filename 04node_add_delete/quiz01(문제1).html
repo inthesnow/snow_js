@@ -33,9 +33,66 @@
             </tr>
         </tbody>
     </table>
+    <button type="button" id="add5">5개추가하기</button>
+    <button type="button" id="add1">1개추가하기</button>
 
     <script>
+        var tableList = document.querySelector(".table");
+
+        var input = document.querySelectorAll("table>tbody>tr>tb?.input");
+
+        var btn1 = document.getElementById("add1");
         
+        btn1.addEventListener("click", function(){
+            var tr = document.createElement("tr");
+            
+            var tb = document.createElement("tb");
+            td.innerHTML='<input type="text" size="3">';
+            tr.appendChild(td);
+            
+            var tb = document.createElement("tb");
+            td.innerHTML='<input type="text">';
+            tr.appendChild(td);
+            
+            var tb = document.createElement("tb");
+            td.innerHTML='<input type="text" size="5">';
+            tr.appendChild(td);
+            
+            var tb = document.createElement("tb");
+            var td = document.createElement("td");
+            td.innerHTML='<input type="text">';
+            tr.appendChild(td);
+            
+            tableList.appendChild(tr);
+        });
+        
+        var btn5 = document.getElementById("add5");
+        
+        btn5.addEventListener("click", function(){
+            for(var i=1;i<=5;i++) {
+                var tr = document.createElement("tr");
+            
+            var tb = document.createElement("tb");
+            td.innerHTML='<input type="text" size="3">';
+            tr.appendChild(td);
+            
+            var tb = document.createElement("tb");
+            td.innerHTML='<input type="text">';
+            tr.appendChild(td);
+            
+            var tb = document.createElement("tb");
+            td.innerHTML='<input type="text" size="5">';
+            tr.appendChild(td);
+            
+            var tb = document.createElement("tb");
+            var td = document.createElement("td");
+            td.innerHTML='<input type="text">';
+            tr.appendChild(td);
+            
+            tableList.appendChild(tr);
+            }
+
+        });
     </script>
 </body>
 </html>
