@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div>
+        <div class="result">
+            <img src="img/1.img" alt="대상이미지" width="300">
+        </div>
+    </div>
+
+    <script>
+        var imgList = document.querySelectorAll("ul li img");
+        var result = document.querySelector(".result img");
+
+        for(var i=0;i<imgList.length;i++){
+            imgList[i].addEventListener("click", handling);
+        }
+
+        function handleImg() {
+            result.src = event.target.src;
+        }
+
+    </script>
+</body>
+</html>
