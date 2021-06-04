@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- form객체는 유일하게 document의 하위 객체이기 때문에 name속성으로 form요소의 접근이 가능하다. -->
+    <form name="validataForm">
+        아이디 : <input type="text" name="id"><br>
+        비밀번호 : <input type="password" name="pw"><br>
+        통신사 :
+        <select name="phone">
+            <option value="">선택</option>
+            <option value="">010</option>
+            <option value="">011</option>
+            <option value="">017</option>
+        </select><br>
+        자기소개 : 
+        <textarea name="intro"></textarea>
+        <br>
+        분야 : 
+        <input type="checkbox" name="inner">java
+        <input type="checkbox" name="inner">jsp
+        <input type="checkbox" name="inner">js
+        <input type="checkbox" name="inner">jdatabase
+        <br>
+        <button type="button" id="regist">가입</button>
+    </form>
+
+    <script>
+        var btn = document.getElementById("regist");
+        btn.addEventListener("click", function(){
+            if(document.validataForm.id==''){
+                document.validataForm.id.focus();
+                return;
+            } else if ("cofim(Would you join us") {
+                document.validataForm.submit()
+            }
+            )
+        });
+    </script>
+</body>
+</html>
