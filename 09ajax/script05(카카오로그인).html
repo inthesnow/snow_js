@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 1. 카카오sdk로드 -->
+    <script src="js/kakao.js"></script>
+</head>
+<body>
+    <a id="custom-login-btn" href="javascript:loginWithKakao()">
+        <img
+          src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
+          width="222"
+        />
+    </a>
+
+    <button class="api-btn" onclick="kakaoLogout()">로그아웃</button>
+    <script>
+        //2. 카카오 초기화
+        Kakao.init('4306199893f86fa673fc035ff7b9639a');
+        Kakao.isInitialized();
+
+        //3. 데모버전으로 들어가서 카카오 로그인 코드를 확인
+        function loginWithKakao() {
+            Kakao.Auth.login({
+                success: function(authObj) {
+                    console.log(authObj);//access토큰값
+                    Kakao.Auth.setAccessToken(authObj.access_token);//access토큰값 저장
+                    getInfo();//4번함수호출
+                
+                },
+                fail: function(err) {
+                    console.log(err);
+                },
+            })
+        }
+        //4. 어세스 토큰을 발급받고, 아래 함수를 호출시켜서 사용자 정보를 받아옴.
+            function getInfo() {
+                Kakao.API.request({
+                    url: '/v2/user/me',
+                    success: function (res) {
+                        console.log(res);
+                        //이메일, 연령대, 닉네임, 프로필이미지
+                        var email=res.kakao_account.email;
+                        var gender = res.kakao_account.gender;
+                        var nick = res.kakao_account.nickname;
+                        var profile_img = res.kakao_account.profile.thumbnail_image_url;
+                    },
+                    fail: function (error) {
+                        alert('login success, but failed to request user information: ' + JSON.stringify(error))
+                    },
+                })
+            }
+
+        //5. 로그아웃
+        function kakaoLogout() {
+            if (!Kakao.Auth.getAccessToken()) {
+                alert('Not logged in.')
+                return;
+            }
+            Kakao.Auth.logout(function() {
+                alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken())
+            })
+        }
+    </script>
+</body>
+</html>
