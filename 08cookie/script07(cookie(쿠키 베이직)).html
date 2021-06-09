@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>쿠키 이름 : <input type="text" id="cookieName"></div>
+    <div>쿠키 값 : <input type="text" id="cookieValue"></div>
+    <button type="button" id="cookieMake">쿠키생성</button>
+    <div>
+        찾을 쿠키 이름 : <input type="text" id="cookieFind">
+        <button type="button" id="cookieGet">쿠키확인</button>
+    </div>
+
+    <script>
+        //쿠키생성
+        var cookieMake = document.getElementById("cookieMake");
+        cookieMake.addEventListener("click", createCookie);
+
+        function createCookie() {
+            //쿠키의 키 = 값
+            var name = document.getElementById("cookieName").value;
+            var value = document.getElementById("cookieValue").value;
+
+            //쿠키 시간
+            var date = new Date();
+            date.setDate(date.getDate() +1); //오늘일수 +1
+
+            //쿠키는 문자열의 형태로 만들어집니다.(&형식을 반드시 지켜야함&)
+            var cookie = "";
+            cookie+=name +"="+value+";";//키=값;
+            cookie+="expires="+date;
+
+            //쿠키는 document.cookie저장
+            document.cookie=cookie;
+
+            var cookieGet = document.getElementById("cookieGet");
+            cookieGet.addEventListener("click", getCookie);
+
+            function getCookie() {
+                var find = document.getElementById("cookieFind").value;//찾을 쿠키 이름
+                
+                //쿠키분해
+                var cookies = document.cookie.split(";");//실제 쿠키값
+                
+                for(var i in cookies) {
+                    console.log(i);
+                    console.log(cookies[i]); //값
+                    if(cookies[i].indexOf(find)!=-1) {
+                        console.log(cookies[i].replace(" ", "").replace(find+"=",""));
+                        return;//함수룡료
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
