@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="map" style="width:800px;height:800px;"></div>
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4306199893f86fa673fc035ff7b9639a"></script>
+    <script>
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+            mapOption = {
+                center: new kakao.maps.LatLng(37.499704, 127.030459), // 지도의 중심좌표
+                level: 9 // 지도의 확대 레벨
+            };
+
+        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+        // 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
+        var positions = [
+            {
+                content: '<div>학원</div>',
+                latlng: new kakao.maps.LatLng(37.499704, 127.030459)
+            },
+            {
+                content: '<div>집</div>',
+                latlng: new kakao.maps.LatLng(37.708553, 127.166422)
+            },
+        ];
+
+        for (var i = 0; i < positions.length; i++) {
+            // 마커를 생성합니다
+            var marker = new kakao.maps.Marker({
+                map: map, // 마커를 표시할 지도
+                position: positions[i].latlng // 마커의 위치
+            });
+
+            // 마커에 표시할 인포윈도우를 생성합니다 
+            var infowindow = new kakao.maps.InfoWindow({
+                content: positions[i].content // 인포윈도우에 표시할 내용
+            });
+
+            // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+            // 이벤트 리스너로는 클로저를 만들어 등록합니다 
+            // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+            kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+            kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+        }
+
+        // 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+        function makeOverListener(map, marker, infowindow) {
+            return function () {
+                infowindow.open(map, marker);
+            };
+        }
+
+        // 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+        function makeOutListener(infowindow) {
+            return function () {
+                infowindow.close();
+            };
+        }
+        // 선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
+        var linePath = [
+            positions[0].latlng,
+            positions[1].latlng,
+        ];
+        // 지도에 표시할 선을 생성합니다
+        var polyline = new kakao.maps.Polyline({
+            path: linePath, // 선을 구성하는 좌표배열 입니다
+            strokeWeight: 5, // 선의 두께 입니다
+            strokeColor: 'red', // 선의 색깔입니다
+            strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            strokeStyle: 'solid' // 선의 스타일입니다
+        });
+        // 지도에 선을 표시합니다 
+        polyline.setMap(map);
+        //거리 계산
+        function distance() {
+            //133*0.208849 = 27.776917  88*0.135963 = 11.964744
+            var a = positions[0].latlng.La-positions[1].latlng.La;
+            var b = positions[0].latlng.Ma-positions[1].latlng.Ma;
+            if(a<0) a*=-1;
+            if(b<0) b*=-1;
+            var p = Math.pow(a*88, 2)+Math.pow(b*133, 2);
+            var d = Math.sqrt(p);
+            d=d.toFixed(4);
+
+            return d;
+        }
+
+        var content = '<div class ="label" style="color:red;">'+distance()+'km</div>';
+        // 커스텀 오버레이가 표시될 위치입니다 
+        var position = new kakao.maps.LatLng(positions[1].latlng.Ma, positions[1].latlng.La);
+        // 커스텀 오버레이를 생성합니다
+        var customOverlay = new kakao.maps.CustomOverlay({
+            position: position,
+            content: content
+        });
+        // 커스텀 오버레이를 지도에 표시합니다
+        customOverlay.setMap(map);
+    </script>
+</body>
+
+</html>
